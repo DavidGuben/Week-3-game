@@ -3,30 +3,43 @@ body {
     text-align:center;
     background-image:url("../images/sky.jpg");
 }
+
  .letter {
     display: inline-block;
     list-style: none;
     width: 20px;
     margin: 0 5px;
-    border-bottom: 3px solid black;
+    border-bottom: 1px solid black;
     text-align: center;
-    color: white;
 }
+
+#letters {
+    margin-top: 10px;
+}
+
 .current-word {
     list-style: none;
 }
 .output {
     opacity: 0;
+    transition: opacity 1s ease;
 }
 .correct {
-    background-color: green;
-    border-radius:10px;
+    background-color: blue;
+}
+.error {
+    color: red;
+    opacity: 1;
+}
+.warning {
+    color: orange;
+    opacity: 1;
+}
+.win {
+    color: green;
+    opacity: 1;
 }
 #outputContainer {
     background-color:white;
-    padding: 20px;
-    font-weight:bold;
-}
-ul {
-    list-style: none;
+    padding:50px;
 }
