@@ -1,7 +1,9 @@
 body {
     font-family: sans-serif;
     text-align:center;
-    background-image: url("assets/images/sky.jpg");
+    background-image: url("../images/sky.jpg");
+    background-color:grey;
+    width:100%;
 }
  .letter {
     display: inline-block;
@@ -20,7 +22,9 @@ body {
 }
 #container {
     background-color:white;
+    padding: 50px;
 }
 #outputContainer {
     background-color:white;
+    padding-bottom: 50px;
 }
