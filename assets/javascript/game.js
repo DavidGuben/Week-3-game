@@ -2,7 +2,7 @@
     //FIRST IM DEFINING IMPORTANT VARIABLES GLOBALLY
        var alphabet = "abcdefghijklmnopqrstuvwxyz";
        var words = ["unicorn", "phoenix", "centaur", "mermaid","dragon","hydra","siren"];
-       var guessesLeft = 4;
+       var guessesLeft = 10;
        var guessOutput = document.getElementById("guessOutput");
        var hangedMan = document.getElementById("hangedMan");
        var guessInput = document.getElementById("letter");
@@ -35,10 +35,8 @@
     function gameOver(win) {
         if (win) {
             guessOutput.innerHTML = promptMessages.win;
-            guessOutput.classList.add('win');
         } else {
             guessOutput.innerHTML = promptMessages.lose;
-            guessOutput.classList.add('error');
         }
         //RESETS GUESS INPUT VALUE TO NOTHING IF WIN OR LOSE
         guessInput.value = '';
@@ -56,17 +54,15 @@
     document.getElementById('hangman').onsubmit = function (i) {
         if (i.preventDefault) i.preventDefault();
         guessOutput.innerHTML = '';
-        guessOutput.classList.remove('error', 'warning');
-        guess = guessInput.value;
-
-        //IF STATEMENT
+        guess = guessInput.value.toLowerCase();
+        //IF STATEMENT THAT CHECKS THE GUESS
         if (guess) {
             //CHECK IF LETTER IS VALID
             if (alphabet.indexOf(guess) > -1) {
                 //CHECK IF LETTER HAS BEEN GUESSED ALREADY
                 if ((lettersMatched && lettersMatched.indexOf(guess) > -1) || (lettersGuessed && lettersGuessed.indexOf(guess) > -1)) {
                     guessOutput.innerHTML = '"' + guess.toUpperCase() + '"' + promptMessages.guessedAlready;
-                    guessOutput.classList.add("warning");
+                    //guessOutput.classList.add("warning");
                 }
                 //ADDS LETTERS TO OUTPUT IF GUESSED CORRECTLY
                 else if (currentWord.indexOf(guess) > -1) {
@@ -96,17 +92,16 @@
                     if (guessesLeft === 0) gameOver();
                 }
             }
-            /* not a valid letter, error */
+            //CHECKS IF LETTER IS VALID
             else {
                 guessOutput.classList.add('error');
                 guessOutput.innerHTML = promptMessages.validLetter;
             }
         }
-        /* no letter entered, error */
+        //CHECKS IF ANY LETTERS HAVE BEEN ENTERED
         else {
             guessOutput.classList.add('error');
             guessOutput.innerHTML = promptMessages.validLetter;
         }
-        return false;
     };
 }());

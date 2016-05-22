@@ -15,25 +15,11 @@ body {
     text-align: center;
     color: white;
 }
-.current-word {
+.currentWord {
     list-style: none;
 }
 .output {
     opacity: 0;
-    transition: opacity 1s ease;
 }
-.correct {
-    background-color: blue;
-}
-.error {
-    color: red;
-    opacity: 1;
-}
-.warning {
-    color: orange;
-    opacity: 1;
-}
-.win {
-    color: green;
-    opacity: 1;
-}
+
+
