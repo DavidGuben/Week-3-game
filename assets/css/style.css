@@ -3,7 +3,9 @@ body {
     text-align:center;
     background-image:url("../images/sky.jpg");
 }
-
+h2 {
+    color:white;
+}
  .letter {
     display: inline-block;
     list-style: none;
