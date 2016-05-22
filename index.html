@@ -8,21 +8,18 @@
     <link type="text/css" rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-
 	<img src="assets/images/hangmanheader.png"/>
     <h2>Category: Mythical Creatures</h2>
-
     <!--I USED A FORM WITH A MAXLENGTH OF 1 SO THE GUESS CAN ONLY BE ONE LETTER-->
     <input type="text" maxlength="1" minlength="1" autocomplete="off" name="letter" id="letter" placeholder="Guess a letter" />
     <br/><br/>
     <button id="guess" name="guess" value="Guess" class="btn btn-primary">Guess</button>
     <button id="restart" name="restart" type="button" class="btn btn-warning">Restart</button>
-
     <br/><br/>
     <div id="outputContainer">
-    <ul id="letters"></ul>
-    <p id="man" class="lead"></p>
-    <p id="output" class="output"></p>
+        <ul id="letters"></ul>
+        <p id="man" class="lead"></p>
+        <p id="output" class="output"></p>
     </div>
     <script src="assets/javascript/game.js"></script>
 </body>
