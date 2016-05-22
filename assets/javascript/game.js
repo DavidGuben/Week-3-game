@@ -1,4 +1,4 @@
-(function () {
+(function globalFunction () {
     //FIRST IM DEFINING IMPORTANT VARIABLES GLOBALLY
        var alphabet = "abcdefghijklmnopqrstuvwxyz";
        var words = ["unicorn", "phoenix", "centaur", "mermaid","dragon","hydra","siren"];
@@ -12,10 +12,10 @@
     //  NEXT I CREATE AN OBJECT WITH THE PROMPTS THAT WILL POP UP
     function prompts() {
         promptMessages = {
-            win: "<h3>You win!</h3>",
+            win: "<h3>You won</h3>",
             lose: "<h3>Game over!</h3>",
-            guessed: " <h3>You guessed that already</h3>",
-            validLetter: "<h3>Please enter a valid letter</h3>"
+            guessedAlready: " <h3>You guessed that already</h3>",
+            validLetter: "<h3>Enter a valid letter</h3>"
         };
         //THEN I DISPLAY A WORD AT RANDOM AND LIMIT TO THE LENGTH OF THE RANDOM WORD
         currentWord = words[Math.floor(Math.random() * words.length)];
@@ -24,8 +24,7 @@
         guessOutput.innerHTML = '';
         document.getElementById("letter").value = '';
         var letters = document.getElementById("letters");
-        letters.innerHTML = '<li class="current-word">Current word:</li>';
-
+        letters.innerHTML = '<li class="currentWord">Current word: </li>';
         var letter, i;
         for (i = 0; i < currentWord.length; i++) {
             letter = '<li class="letter letter' + currentWord.charAt(i).toUpperCase() + '">' + currentWord.charAt(i).toUpperCase() + '</li>';
@@ -44,56 +43,52 @@
         //RESETS GUESS INPUT VALUE TO NOTHING IF WIN OR LOSE
         guessInput.value = '';
     }
-
     //STARTS THE GAME ON LOAD OF DOCUMENT
     document.onload = prompts();
-
-    /* buttons */
-    document.getElementById("restart").onclick = prompts;
-
-    /* reset letter to guess on click */
+    //CALLS THE GLOBAL FUNCTION TO RESET THE GAME
+    document.getElementById("restart").onclick = globalFunction;
+    //EVERYTIME YOU CLICK IN THE INPUT THIS WILL REPLACE THE VALUE OF THE INPUT TO NOTHING
+    //SO I DONT HAVE TO KEEP ERASING THE LETTER
     guessInput.onclick = function () {
         this.value = '';
     };
-
-    /* main guess function when user clicks #guess */
-    document.getElementById('hangman').onsubmit = function (e) {
-        if (e.preventDefault) e.preventDefault();
+    //GUESS FUNCTION
+    document.getElementById('hangman').onsubmit = function (i) {
+        if (i.preventDefault) i.preventDefault();
         guessOutput.innerHTML = '';
         guessOutput.classList.remove('error', 'warning');
         guess = guessInput.value;
 
-        /* does guess have a value? if yes continue, if no, error */
+        //IF STATEMENT
         if (guess) {
-            /* is guess a valid letter? if so carry on, else error */
+            //CHECK IF LETTER IS VALID
             if (alphabet.indexOf(guess) > -1) {
-                /* has it been guessed (missed or matched) already? if so, abandon & add notice */
+                //CHECK IF LETTER HAS BEEN GUESSED ALREADY
                 if ((lettersMatched && lettersMatched.indexOf(guess) > -1) || (lettersGuessed && lettersGuessed.indexOf(guess) > -1)) {
-                    guessOutput.innerHTML = '"' + guess.toUpperCase() + '"' + promptMessages.guessed;
+                    guessOutput.innerHTML = '"' + guess.toUpperCase() + '"' + promptMessages.guessedAlready;
                     guessOutput.classList.add("warning");
                 }
-                /* does guess exist in current word? if so, add to letters already matched, if final letter added, game over with win message */
+                //ADDS LETTERS TO OUTPUT IF GUESSED CORRECTLY
                 else if (currentWord.indexOf(guess) > -1) {
                     var lettersToShow;
                     lettersToShow = document.querySelectorAll(".letter" + guess.toUpperCase());
-
                     for (var i = 0; i < lettersToShow.length; i++) {
                         lettersToShow[i].classList.add("correct");
                     }
-
-                    /* check to see if letter appears multiple times */
-                    for (var j = 0; j < currentWord.length; j++) {
-                        if (currentWord.charAt(j) === guess) {
+                    //CHECKS IF LETTER APPEARS MULTIPLE TIMES IN THE WORD
+                    for (var l = 0; l < currentWord.length; l++) {
+                        if (currentWord.charAt(l) === guess) {
                             numLettersMatched += 1;
                         }
                     }
-
+                    //CHECKS IF NUMBERS OF LETTERS MATCHED EQUALS THE EXACT CURRENTWORD LENGTH SO IT
+                    //DISPLAYS A WINNING MESSAGE
                     lettersMatched += guess;
                     if (numLettersMatched === currentWord.length) {
                         gameOver(true);
                     }
                 }
-                /* guess doesn't exist in current word and hasn't been guessed before, add to lettersGuessed, reduce guessesLeft & update user */
+                //CHECKS GUESSES LEFT AND IF ITS 0 DISPLAYS A GAME OVER MESSAGE
                 else {
                     lettersGuessed += guess;
                     guessesLeft--;
