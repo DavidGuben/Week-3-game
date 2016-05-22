@@ -24,7 +24,7 @@
         guessOutput.innerHTML = '';
         document.getElementById("letter").value = '';
         var letters = document.getElementById("letters");
-        letters.innerHTML = '<li class="currentWord">Current word: </li>';
+        letters.innerHTML = '<li class="currentWord">Guess A Letter: </li>';
         var letter, i;
         for (i = 0; i < currentWord.length; i++) {
             letter = '<li class="letter letter' + currentWord.charAt(i).toUpperCase() + '">' + currentWord.charAt(i).toUpperCase() + '</li>';
