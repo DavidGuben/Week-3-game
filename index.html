@@ -2,8 +2,28 @@
 <html>
 <head>
 	<title>Hangman</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
+
 </head>
 <body>
-	<img src="images/hangmanheader.png"/>
+	<img src="assets/images/hangmanheader.png"/>
+    <h2>Category: Mythical Creatures</h2>
+    <form id="hangman">
+    <!--I USED A FORM WITH A MAXLENGTH OF 1 SO THE GUESS CAN ONLY BE ONE LETTER-->
+    <input type="text" maxlength="1" minlength="1" name="letter" id="letter" />
+    <br/><br/>
+    <button id="guess" name="guess" value="Guess" class="btn btn-primary" />Guess</button>
+    <button id="restart" name="restart" type="button" class="btn btn-warning">Restart</button>
+</form>
+<br/>
+
+<ul id="letters"></ul>
+<div id="hangedMan"></div>
+<p id="guessOutput" class="guessOutput"></p>
+<script src="assets/javascript/game.js"></script>
+</html>
 </body>
 </html>
