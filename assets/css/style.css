@@ -1,11 +1,7 @@
-* {
-    box-sizing: border-box;
-}
 body {
     font-family: sans-serif;
     text-align:center;
 }
-/* Keep it simple - improvement would be to not display characters */
  .letter {
     display: inline-block;
     list-style: none;
@@ -21,5 +17,10 @@ body {
 .output {
     opacity: 0;
 }
-
+#container {
+    background-color:white;
+}
+#outputContainer {
+    background-color:white;
+}
 
