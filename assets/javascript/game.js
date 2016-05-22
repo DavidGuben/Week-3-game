@@ -2,33 +2,28 @@
     //FIRST IM DEFINING IMPORTANT VARIABLES GLOBALLY
        var alphabet = "abcdefghijklmnopqrstuvwxyz";
        var words = ["unicorn", "phoenix", "centaur", "mermaid","dragon","hydra","siren"];
-       var guessesLeft = 10;
+       var guessesLeft = 4;
        var guessOutput = document.getElementById("guessOutput");
        var hangedMan = document.getElementById("hangedMan");
        var guessInput = document.getElementById("letter");
        var lettersGuessed = lettersMatched = '';
+       var guessButton = document.getElementById("guess");
        var numLettersMatched = 0;
     //  NEXT I CREATE AN OBJECT WITH THE PROMPTS THAT WILL POP UP
     function prompts() {
         promptMessages = {
-            win: '<h3>You win!</h3>',
-            lose: '<h3>Game over!</h3>',
-            guessed: ' <h3>You guessed that already</h3>',
-            validLetter: '<h3>Please enter a valid letter</h3>'
+            win: "<h3>You win!</h3>",
+            lose: "<h3>Game over!</h3>",
+            guessed: " <h3>You guessed that already</h3>",
+            validLetter: "<h3>Please enter a valid letter</h3>"
         };
-        //THEN I DISPLAY A WORD AT RANDOM
+        //THEN I DISPLAY A WORD AT RANDOM AND LIMIT TO THE LENGTH OF THE RANDOM WORD
         currentWord = words[Math.floor(Math.random() * words.length)];
         //CREATING A VARIABLE THAT SUBTRACTS GUESSES FROM HANGEDMAN
         hangedMan.innerHTML = 'You have ' + guessesLeft + ' guesses remaining';
         guessOutput.innerHTML = '';
-
         document.getElementById("letter").value = '';
-
-        /* make sure guess button is enabled */
-        var guessButton = document.getElementById("guess");
-
-        //DISPLAYS
-        letters = document.getElementById("letters");
+        var letters = document.getElementById("letters");
         letters.innerHTML = '<li class="current-word">Current word:</li>';
 
         var letter, i;
@@ -37,7 +32,7 @@
             letters.insertAdjacentHTML('beforeend', letter);
         }
     }
-
+    //CREATING A IF/ELSE STATEMENT THAT DEFINES WIN OR LOSE
     function gameOver(win) {
         if (win) {
             guessOutput.innerHTML = promptMessages.win;
@@ -46,13 +41,12 @@
             guessOutput.innerHTML = promptMessages.lose;
             guessOutput.classList.add('error');
         }
-
-        guessInput.style.display = guessButton.style.display = 'none';
+        //RESETS GUESS INPUT VALUE TO NOTHING IF WIN OR LOSE
         guessInput.value = '';
     }
 
-    /* Start game - should ideally check for existing functions attached to window.onload */
-    window.onload = prompts();
+    //STARTS THE GAME ON LOAD OF DOCUMENT
+    document.onload = prompts();
 
     /* buttons */
     document.getElementById("restart").onclick = prompts;
