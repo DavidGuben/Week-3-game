@@ -1,6 +1,7 @@
 body {
     font-family: sans-serif;
     text-align:center;
+    background-image: url("assets/images/sky.jpg");
 }
  .letter {
     display: inline-block;
@@ -23,4 +24,3 @@ body {
 #outputContainer {
     background-color:white;
 }
-
