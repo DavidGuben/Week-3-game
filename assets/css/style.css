@@ -14,7 +14,6 @@ h2 {
     border-bottom: 1px solid black;
     text-align: center;
 }
-
 #letters {
     margin-top: 10px;
 }
@@ -25,9 +24,6 @@ h2 {
 .output {
     opacity: 0;
     transition: opacity 1s ease;
-}
-.correct {
-    background-color: blue;
 }
 .error {
     color: red;
