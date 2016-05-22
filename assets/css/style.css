@@ -1,9 +1,7 @@
 body {
     font-family: sans-serif;
     text-align:center;
-    background-image: url("../images/sky.jpg");
-    background-color:grey;
-    width:100%;
+    background-image:url("../images/sky.jpg");
 }
  .letter {
     display: inline-block;
@@ -14,17 +12,20 @@ body {
     text-align: center;
     color: white;
 }
-.currentWord {
+.current-word {
     list-style: none;
 }
 .output {
     opacity: 0;
 }
-#container {
-    background-color:white;
-    padding: 50px;
+.correct {
+    background-color: green;
+    border-radius:10px;
 }
 #outputContainer {
     background-color:white;
-    padding-bottom: 50px;
+    padding: 20px;
+}
+ul {
+    list-style: none;
 }
